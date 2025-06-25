@@ -47,13 +47,9 @@ st.markdown("""
 </h1>""", unsafe_allow_html=True)
 
 # ========= SUBIR O SACAR FOTO =========
-st.markdown("## 📷 Subí o tomá una foto para analizar")
-
-col1, col2 = st.columns(2)
-with col1:
-    uploaded_file = st.file_uploader("📁 Subí una imagen", type=["jpg", "jpeg", "png"])
-with col2:
-    photo = st.camera_input("📸 O tomá una con la cámara")
+# Widgets para cargar imagen o sacar foto
+uploaded_file = st.file_uploader("Subí una foto grupal (jpg, jpeg, png)", type=["jpg", "jpeg", "png"])
+photo = st.camera_input("O tomá una foto con la cámara 📷")
 
 # Imagen prioritaria
 image = None
