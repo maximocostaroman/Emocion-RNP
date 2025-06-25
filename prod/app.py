@@ -70,7 +70,7 @@ if image is not None:
         boxes = boxes[boxes[:, 0].argsort()]
         draw = ImageDraw.Draw(image)
         try:
-            font = ImageFont.truetype("arial.ttf", size=80)
+            font = ImageFont.truetype("arial.ttf", size=150)
         except:
             font = ImageFont.load_default()
 
@@ -124,7 +124,7 @@ class EmotionDetector(VideoTransformerBase):
         if boxes is not None:
             draw = ImageDraw.Draw(image_pil)
             try:
-                font = ImageFont.truetype("arial.ttf", size=20)
+                font = ImageFont.truetype("arial.ttf", size=150)
             except:
                 font = ImageFont.load_default()
 
