@@ -11,16 +11,10 @@ import urllib.request
 import av
 import cv2
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
+from model import resnet18_model
 
 # ========= MODELO Y CONFIG =========
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-def resnet18_model(num_classes=7, dropout_p=0.6):
-    model = resnet18(weights=ResNet18_Weights.DEFAULT)
-    model.fc = nn.Sequential(
-        nn.Dropout(p=dropout_p),
-        nn.Linear(512, num_classes)
-    )
-    return model
 model = resnet18_model()
 model_path = "modelo_entrenado.pth"
 url = "https://raw.githubusercontent.com/TotoMezza/Emocion/main/dev/modelo_entrenado.pth"
