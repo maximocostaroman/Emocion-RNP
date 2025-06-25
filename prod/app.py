@@ -16,7 +16,7 @@ from model import resnet18_model
 # ========= MODELO Y CONFIG =========
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = resnet18_model()
-model_path = "modelo_entrenado.pth"
+model_path = "dev/modelo_entrenado.pth"
 url = "https://raw.githubusercontent.com/TotoMezza/Emocion/main/dev/modelo_entrenado.pth"
 
 if not os.path.exists(model_path):
