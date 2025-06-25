@@ -60,8 +60,9 @@ elif uploaded_file is not None:
 
 # ========= ANÁLISIS DE FOTO =========
 if image is not None:
-    st.image(image, caption="Imagen original", use_container_width=True)
-    boxes, _ = mtcnn.detect(image)
+    if uploaded_file is not None:  # Solo mostrar si la imagen fue subida, no tomada
+        st.image(image, caption="Imagen original", use_container_width=True)
+        boxes, _ = mtcnn.detect(image)
 
     if boxes is None:
         st.warning("No se detectaron caras. 🤔 Intentá con otra foto.")
