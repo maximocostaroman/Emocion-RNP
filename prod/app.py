@@ -97,8 +97,16 @@ if image is not None:
         st.image(image, caption="Emociones detectadas 🎉", use_container_width=True)
 
         st.markdown("## Resultados detallados por persona")
+
         for persona_num, emocion_pred, color, emociones_top in resultados:
             st.markdown(f"### 🧠 Persona #{persona_num}: <span style='color:{color};'>{emocion_pred}</span>", unsafe_allow_html=True)
+
+            # Mostrar recorte de la cara
+            box = boxes[persona_num - 1]
+            face_crop = image.crop(box)
+            st.image(face_crop, width=150, caption=f"Cara #{persona_num}")
+
+            # Mostrar tabla de emociones
             df_emociones = pd.DataFrame(emociones_top, columns=["Emoción", "Confianza (%)"])
             df_emociones["Confianza (%)"] = df_emociones["Confianza (%)"].map(lambda x: f"{x:.1f}%")
             st.table(df_emociones)
