@@ -35,11 +35,9 @@ emotion_colors = {
 # ========= MTCNN Y TRANSFORM =========
 mtcnn = MTCNN(keep_all=True, device=device, post_process=True)
 transform = transforms.Compose([
-    transforms.Grayscale(num_output_channels=1),
     transforms.Resize((48, 48)),
-    transforms.ToTensor()
+    transforms.ToTensor(), 
 ])
-
 # ========= TÍTULO =========
 st.markdown("""
 <h1 style='text-align:center; color:#3B4252; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;'>
@@ -77,7 +75,7 @@ if image is not None:
         resultados = []
 
         for i, box in enumerate(boxes):
-            face = image.crop(box).convert("L").resize((48, 48))
+            face = image.crop(box).resize((48, 48))
             input_tensor = transform(face).unsqueeze(0).to(device)
 
             with torch.no_grad():
@@ -129,7 +127,7 @@ class EmotionDetector(VideoTransformerBase):
                 font = ImageFont.load_default()
 
             for box in boxes:
-                face = image_pil.crop(box).convert("L").resize((48, 48))
+                face = image_pil.crop(box).resize((48, 48))
                 input_tensor = transform(face).unsqueeze(0).to(device)
                 with torch.no_grad():
                     output = model(input_tensor)
