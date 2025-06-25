@@ -11,7 +11,6 @@ import urllib.request
 import av
 import cv2
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
-from model import FERModel  # Asegurate de tener esta clase en model.py
 
 # ========= MODELO Y CONFIG =========
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
